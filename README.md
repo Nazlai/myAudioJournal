@@ -4,5 +4,5 @@ This is a web app for documenting recorded audio files.
 
 # Start
 
-npm install
+npm install\
 npm run start:dev
