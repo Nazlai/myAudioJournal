@@ -12,6 +12,12 @@ const webpackConfig = {
   },
   resolve: {
     extensions: [".js", ".jsx"],
+    alias: {
+      "@": path.resolve("src"),
+      "@components": path.resolve(__dirname, "app/components"),
+      "@firebase": path.resolve(__dirname, "app/firebase"),
+      "@constants": path.resolve(__dirname, "app/constants"),
+    },
   },
   module: {
     rules: [
