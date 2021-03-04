@@ -6,7 +6,7 @@ import useAuthenticate from "utils/useAuthenticate";
 
 const defaultCondition = (value) => !!value;
 
-const PrivateRoute = ({
+const AuthenticatedRoute = ({
   children,
   condition = defaultCondition,
   ...options
@@ -19,14 +19,14 @@ const PrivateRoute = ({
 
   return (
     <Route {...options}>
-      {!condition(authUser) ? <Redirect to={ROUTES.SIGN_IN} /> : children}
+      {!condition(authUser) ? children : <Redirect to={ROUTES.HOME} />}
     </Route>
   );
 };
 
-PrivateRoute.propTypes = {
+AuthenticatedRoute.propTypes = {
   children: PropTypes.node,
   condition: PropTypes.func,
 };
 
-export default PrivateRoute;
+export default AuthenticatedRoute;
