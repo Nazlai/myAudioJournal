@@ -1,3 +1,4 @@
+import React from "react";
 import app from "firebase/app";
 import "firebase/auth";
 import "firebase/storage";
@@ -12,6 +13,8 @@ const config = {
   messagingSenderId: process.env.MESSAGING_SENDER_ID,
 };
 
+export const FirebaseContext = React.createContext(null);
+
 class Firebase {
   constructor() {
     app.initializeApp(config);
@@ -19,6 +22,26 @@ class Firebase {
     this.auth = app.auth();
     this.storage = app.storage();
     this.database = app.database();
+  }
+
+  doCreateUserWithEmailAndPassword(email, password) {
+    return this.auth.createUserWithEmailAndPassword(email, password);
+  }
+
+  doSignInWithEmailAndPassword(email, password) {
+    return this.auth.signInWithEmailAndPassword(email, password);
+  }
+
+  doSignOut() {
+    return this.auth.signOut();
+  }
+
+  doPasswordReset(email) {
+    return this.auth.sendPasswordResetEmail(email);
+  }
+
+  doPasswordUpdate(password) {
+    return this.auth.currentUser.updatePassword(password);
   }
 }
 

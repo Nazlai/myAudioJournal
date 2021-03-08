@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { Route, Redirect } from "react-router-dom";
 import * as ROUTES from "constants/routes";
 import useAuthenticate from "utils/useAuthenticate";
-
-const defaultCondition = (value) => !!value;
+import { defaultCondition } from "utils";
+import Spinner from "components/Spinner";
 
 const PrivateRoute = ({
   children,
@@ -14,7 +14,7 @@ const PrivateRoute = ({
   const [loading, authUser] = useAuthenticate();
 
   if (loading) {
-    return <div>loading...</div>;
+    return <Spinner />;
   }
 
   return (
