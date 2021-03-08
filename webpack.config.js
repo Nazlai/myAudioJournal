@@ -54,7 +54,7 @@ const webpackConfig = {
         ],
       },
       {
-        test: /\.scss$/i,
+        test: /\.scss|css$/i,
         exclude: /\.module\.scss$/i,
         use: [
           isDevelopment ? "style-loader" : MiniCssExtractPlugin.loader,
@@ -66,6 +66,14 @@ const webpackConfig = {
             },
           },
         ],
+      },
+      {
+        test: /\.woff2?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: "url-loader",
+      },
+      {
+        test: /\.(ttf|eot|svg)$/i,
+        use: "file-loader",
       },
     ],
   },
