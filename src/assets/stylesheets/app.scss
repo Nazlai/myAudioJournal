@@ -1,0 +1,42 @@
+@import "./fontawesome.scss";
+@import "./colors.scss";
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  text-align: center;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background-color: $textColor;
+}
+
+a,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+  color: $primaryColor;
+}
+
+a:hover {
+  color: $darkPrimaryColor;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+input,
+textarea {
+  text-align: left;
+}
