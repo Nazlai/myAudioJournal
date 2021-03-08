@@ -1,0 +1,18 @@
+@import "~styles/colors";
+
+.container {
+  margin-bottom: 0.7rem;
+}
+
+.input {
+  padding: 0.5rem;
+  border: 2px solid $darkPrimaryColor;
+}
+
+.input:focus {
+  border-color: $secondaryColor;
+}
+
+.textArea {
+  border: 2px solid $darkPrimaryColor;
+}
