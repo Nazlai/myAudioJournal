@@ -5,6 +5,7 @@ import { AuthUserContext } from "session/authUser";
 import { FirebaseContext } from "firebaseUtils";
 import styles from "./navigation.module";
 import Overlay from "components/Overlay";
+import Layout from "components/Layouts";
 
 // needs styling
 // replace text with icons
@@ -71,14 +72,19 @@ const PrivateNavigation = () => {
       </li>
       {open && (
         <Overlay handleClose={() => setOpen(false)}>
-          <OverlayItem>
-            <Link to={ROUTES.PROFILE} onClick={() => setOpen(false)}>
-              Profile
-            </Link>
-          </OverlayItem>
-          <OverlayItem>
-            <SignOutButton handleClick={() => setOpen(false)} />
-          </OverlayItem>
+          <div className={styles.closeBtn}>
+            <i className="fas fa-times" onClick={() => setOpen(false)}></i>
+          </div>
+          <Layout>
+            <OverlayItem>
+              <Link to={ROUTES.PROFILE} onClick={() => setOpen(false)}>
+                Profile
+              </Link>
+            </OverlayItem>
+            <OverlayItem>
+              <SignOutButton handleClick={() => setOpen(false)} />
+            </OverlayItem>
+          </Layout>
         </Overlay>
       )}
     </Fragment>
