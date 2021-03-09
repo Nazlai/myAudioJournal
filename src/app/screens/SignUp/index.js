@@ -6,12 +6,13 @@ import { actionCreator, handleChange } from "utils";
 import Input from "components/Input";
 import { SubmitButton } from "components/Button";
 import Warning from "components/Warning";
+import Layout from "components/Layouts";
 
 const SignUp = () => (
-  <div>
+  <Layout>
     <h1>Sign Up</h1>
     <SignUpForm />
-  </div>
+  </Layout>
 );
 
 const actionType = {

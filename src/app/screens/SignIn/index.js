@@ -6,16 +6,17 @@ import { actionCreator, handleChange } from "utils";
 import Input from "components/Input";
 import { SubmitButton } from "components/Button";
 import Warning from "components/Warning";
+import Layout from "components/Layouts";
 
 // add authenticated route
 
 const SignIn = () => (
-  <div>
+  <Layout>
     <h1>Sign In</h1>
     <SignInForm />
     {/* add forget password */}
     <SignUpLink />
-  </div>
+  </Layout>
 );
 
 const SignUpLink = () => (
