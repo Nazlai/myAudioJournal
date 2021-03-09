@@ -2,8 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
 import { EDIT_POST } from "constants/routes";
+import style from "./card.module";
 
-const Journal = (props) => {
+const Card = (props) => {
   const { title, content } = props;
   const history = useHistory();
 
@@ -17,16 +18,16 @@ const Journal = (props) => {
   };
 
   return (
-    <div onClick={handleClick}>
+    <div onClick={handleClick} className={style.container}>
       <div>{title}</div>
       <div>{content}</div>
     </div>
   );
 };
 
-Journal.propTypes = {
+Card.propTypes = {
   title: PropTypes.string,
   content: PropTypes.string,
 };
 
-export default Journal;
+export default Card;

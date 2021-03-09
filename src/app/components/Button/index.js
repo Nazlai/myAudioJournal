@@ -10,7 +10,7 @@ const Button = ({ handleClick, text }) => {
   );
 };
 
-export const SubmitButton = ({ text, ...rest }) => (
+export const SubmitButton = ({ text = "Submit", ...rest }) => (
   <div className={styles.submitBtnContainer}>
     <button className={styles.submitBtn} {...rest}>
       {text}
