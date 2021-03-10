@@ -3,6 +3,7 @@ import app from "firebase/app";
 import "firebase/auth";
 import "firebase/storage";
 import "firebase/database";
+import { audioPost } from "constants/firebase";
 
 const config = {
   apiKey: process.env.API_KEY,
@@ -26,6 +27,8 @@ class Firebase {
     this.auth = app.auth();
     this.storage = app.storage();
     this.database = app.database();
+    this.storageRef = this.storage.ref();
+    this.databaseRef = this.database.ref();
   }
 
   doCreateUserWithEmailAndPassword(email, password) {
@@ -46,6 +49,24 @@ class Firebase {
 
   doPasswordUpdate(password) {
     return this.auth.currentUser.updatePassword(password);
+  }
+
+  doCreateChildRef(fileName) {
+    return this.storageRef.child(fileName);
+  }
+
+  doUploadFile(fileName, file) {
+    return this.doCreateChildRef(fileName).put(file);
+  }
+
+  createPost(path, payload) {
+    const dbPostRef = this.databaseRef.child(path);
+    const newPostRef = dbPostRef.push();
+    return newPostRef.set(payload);
+  }
+
+  getAllPosts(uid) {
+    return this.databaseRef.child(uid).child(audioPost).get();
   }
 }
 
