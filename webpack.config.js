@@ -23,6 +23,7 @@ const webpackConfig = {
       utils: path.resolve(__dirname, "src/app/utils"),
       session: path.resolve(__dirname, "src/app/session"),
       styles: path.resolve(__dirname, "src/assets/stylesheets"),
+      routes: path.resolve(__dirname, "src/app/routes"),
     },
   },
   module: {
