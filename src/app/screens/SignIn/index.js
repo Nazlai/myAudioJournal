@@ -10,11 +10,15 @@ import Layout from "components/Layouts";
 
 // add authenticated route
 
+const PasswordReset = () => {
+  return <Link to={ROUTES.PASSWORD_RESET}>Forget Password?</Link>;
+};
+
 const SignIn = () => (
   <Layout>
     <h1>Sign In</h1>
     <SignInForm />
-    {/* add forget password */}
+    <PasswordReset />
     <SignUpLink />
   </Layout>
 );

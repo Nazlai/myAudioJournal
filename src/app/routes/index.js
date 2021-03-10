@@ -10,6 +10,7 @@ import {
   SignIn,
   SignUp,
   NotFound,
+  PasswordReset,
 } from "screens";
 import PrivateRoute from "components/PrivateRoute";
 import AuthenticatedRoute from "components/AuthenticatedRoute";
@@ -29,6 +30,9 @@ const Routes = () => {
       </AuthenticatedRoute>
       <AuthenticatedRoute path={ROUTES.SIGN_UP}>
         <SignUp />
+      </AuthenticatedRoute>
+      <AuthenticatedRoute path={ROUTES.PASSWORD_RESET}>
+        <PasswordReset />
       </AuthenticatedRoute>
       <PrivateRoute path={ROUTES.PROFILE}>
         <Profile />

@@ -6,6 +6,7 @@ import Profile from "screens/Profile";
 import SignIn from "screens/SignIn";
 import SignUp from "screens/SignUp";
 import NotFound from "screens/NotFound";
+import PasswordReset from "screens/PasswordReset";
 
 export {
   CreatePost,
@@ -16,4 +17,5 @@ export {
   SignIn,
   SignUp,
   NotFound,
+  PasswordReset,
 };
