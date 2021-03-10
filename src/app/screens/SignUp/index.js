@@ -1,6 +1,6 @@
-import React, { useReducer, useContext, Fragment } from "react";
+import React, { useReducer, Fragment } from "react";
 import { useHistory } from "react-router-dom";
-import { FirebaseContext } from "firebaseUtils";
+import { useFirebase } from "firebaseUtils";
 import * as ROUTES from "constants/routes";
 import { actionCreator, handleChange } from "utils";
 import Input from "components/Input";
@@ -50,7 +50,7 @@ const signUpReducer = (state, action) => {
 const SignUpForm = () => {
   const [state, dispatch] = useReducer(signUpReducer, initialState);
   const history = useHistory();
-  const firebase = useContext(FirebaseContext);
+  const firebase = useFirebase();
 
   const handleSubmit = (event) => {
     event.preventDefault();

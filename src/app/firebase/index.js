@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import app from "firebase/app";
 import "firebase/auth";
 import "firebase/storage";
@@ -14,6 +14,10 @@ const config = {
 };
 
 export const FirebaseContext = React.createContext(null);
+
+export const useFirebase = () => {
+  return useContext(FirebaseContext);
+};
 
 class Firebase {
   constructor() {

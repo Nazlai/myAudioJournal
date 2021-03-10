@@ -1,8 +1,8 @@
-import React, { useState, useContext, Fragment } from "react";
+import React, { useState, Fragment } from "react";
 import { Link } from "react-router-dom";
 import * as ROUTES from "constants/routes";
-import { AuthUserContext } from "session/authUser";
-import { FirebaseContext } from "firebaseUtils";
+import { useAuth } from "session/authUser";
+import { useFirebase } from "firebaseUtils";
 import styles from "./navigation.module";
 import Overlay from "components/Overlay";
 import Layout from "components/Layouts";
@@ -16,7 +16,7 @@ const OverlayItem = ({ children }) => (
 );
 
 const SignOutButton = ({ handleClick }) => {
-  const firebase = useContext(FirebaseContext);
+  const firebase = useFirebase();
   const onClick = () => {
     firebase.doSignOut();
     handleClick();
@@ -26,7 +26,7 @@ const SignOutButton = ({ handleClick }) => {
 };
 
 const Navigation = () => {
-  const authUser = useContext(AuthUserContext);
+  const authUser = useAuth();
 
   return (
     <nav className={styles.container}>

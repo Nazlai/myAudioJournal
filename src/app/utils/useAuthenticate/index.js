@@ -1,11 +1,11 @@
-import { useState, useEffect, useContext } from "react";
-import { FirebaseContext } from "firebaseUtils";
+import { useState, useEffect } from "react";
+import { useFirebase } from "firebaseUtils";
 import { normalizeUser } from "utils";
 
 const useAuthenticate = () => {
   const [loading, setLoading] = useState(true);
   const [authUser, setAuthUser] = useState(null);
-  const firebase = useContext(FirebaseContext);
+  const firebase = useFirebase();
 
   useEffect(() => {
     const listener = firebase.auth.onAuthStateChanged((authUser) => {

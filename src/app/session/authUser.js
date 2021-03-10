@@ -1,13 +1,17 @@
 import React, { useState, useEffect, useContext } from "react";
 import { normalizeUser } from "utils";
-import { FirebaseContext } from "firebaseUtils";
+import { useFirebase } from "firebaseUtils";
 
 export const AuthUserContext = React.createContext(null);
+
+export const useAuth = () => {
+  return useContext(AuthUserContext);
+};
 
 const withAuthentication = (Component) => {
   const WithAuthentication = (props) => {
     const [authUser, setAuthUser] = useState(null);
-    const firebase = useContext(FirebaseContext);
+    const firebase = useFirebase();
 
     useEffect(() => {
       const listener = firebase.auth.onAuthStateChanged((authUser) =>
