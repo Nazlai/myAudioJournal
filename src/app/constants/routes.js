@@ -6,3 +6,4 @@ export const CREATE_POST = "/create_post";
 export const EDIT_POST = "/edit_post";
 export const SIGN_IN = "/signin";
 export const SIGN_UP = "/signup";
+export const PASSWORD_RESET = "/password_reset";
