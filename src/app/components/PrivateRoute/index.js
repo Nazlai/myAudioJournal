@@ -5,6 +5,7 @@ import * as ROUTES from "constants/routes";
 import useAuthenticate from "utils/useAuthenticate";
 import { defaultCondition } from "utils";
 import Spinner from "components/Spinner";
+import Layout from "components/Layouts";
 
 const PrivateRoute = ({
   children,
@@ -14,7 +15,11 @@ const PrivateRoute = ({
   const [loading, authUser] = useAuthenticate();
 
   if (loading) {
-    return <Spinner />;
+    return (
+      <Layout>
+        <Spinner />
+      </Layout>
+    );
   }
 
   return (
