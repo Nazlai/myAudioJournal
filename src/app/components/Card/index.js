@@ -4,7 +4,10 @@ import { useHistory } from "react-router-dom";
 import { EDIT_POST } from "constants/routes";
 import style from "./card.module";
 
+const capitalize = (string) => `${string[0].toUpperCase()}${string.slice(1)}`;
+
 const Card = (props) => {
+  console.log(props);
   const { title, content } = props;
   const history = useHistory();
 
@@ -19,8 +22,8 @@ const Card = (props) => {
 
   return (
     <div onClick={handleClick} className={style.container}>
-      <div>{title}</div>
-      <div>{content}</div>
+      <div className={style.title}>{capitalize(title)}</div>
+      <div className={style.content}>{content}</div>
     </div>
   );
 };

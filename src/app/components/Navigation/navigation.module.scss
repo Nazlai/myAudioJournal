@@ -1,6 +1,9 @@
+@import "~styles/colors";
+
 .container {
   position: fixed;
   width: 100vw;
+  background-color: $secondaryColor;
 }
 
 .nav {

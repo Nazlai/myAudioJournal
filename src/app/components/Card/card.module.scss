@@ -1,5 +1,16 @@
+@import "~styles/colors";
+
 .container {
-  background-color: palevioletred;
-  padding: 2rem;
-  margin: 1rem;
+  border: 2px solid $primaryColor;
+  color: $primaryColor;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.title {
+  margin-bottom: 1rem;
+}
+
+.content {
+  text-align: left;
 }
