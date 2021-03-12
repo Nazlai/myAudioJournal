@@ -81,6 +81,7 @@ const webpackConfig = {
   devServer: {
     historyApiFallback: true,
   },
+  devtool: "source-map",
   plugins: [
     new webpack.DefinePlugin({
       "process.env": JSON.stringify(dotenv.parsed),

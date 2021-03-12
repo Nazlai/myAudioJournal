@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "webpack serve --mode development",
     "lint": "eslint \"src/**/*.{js,jsx}\"",
-    "format": "prettier \"src/**/*.{js,html}\" --write"
+    "format": "prettier \"src/**/*.{js,html}\" --write",
+    "build": "webpack",
+    "bundle:report": "source-map-explorer dist/*.js"
   },
   "keywords": [],
   "author": "",
@@ -18,7 +20,8 @@
     "normalize.css": "^8.0.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "source-map-explorer": "^2.5.2"
   },
   "devDependencies": {
     "@babel/core": "^7.13.8",
