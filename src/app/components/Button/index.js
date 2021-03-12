@@ -4,7 +4,7 @@ import styles from "./button.module";
 
 const Button = ({ handleClick, text }) => {
   return (
-    <button type="button" onClick={handleClick}>
+    <button className={styles.btn} type="button" onClick={handleClick}>
       {text}
     </button>
   );
@@ -12,7 +12,7 @@ const Button = ({ handleClick, text }) => {
 
 export const SubmitButton = ({ text = "Submit", ...rest }) => (
   <div className={styles.submitBtnContainer}>
-    <button className={styles.submitBtn} {...rest}>
+    <button className={`${styles.btn} ${styles.submitBtn}`} {...rest}>
       {text}
     </button>
   </div>

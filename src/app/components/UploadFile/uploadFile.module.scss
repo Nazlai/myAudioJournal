@@ -1,3 +1,9 @@
+@import "~styles/colors";
+
 .fileInput {
   visibility: hidden;
+}
+
+.container {
+  background-color: rgba($disabledColor, 0.5);
 }

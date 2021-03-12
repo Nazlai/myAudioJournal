@@ -70,23 +70,25 @@ const PrivateNavigation = () => {
           <i className="fas fa-user"></i>
         </a>
       </li>
-      {open && (
+      {open ? (
         <Overlay handleClose={() => setOpen(false)}>
-          <div className={styles.closeBtn}>
-            <i className="fas fa-times" onClick={() => setOpen(false)}></i>
+          <div className={styles.overlayProfile}>
+            <div className={styles.closeBtn}>
+              <i className="fas fa-times" onClick={() => setOpen(false)}></i>
+            </div>
+            <Layout>
+              <OverlayItem>
+                <Link to={ROUTES.PROFILE} onClick={() => setOpen(false)}>
+                  Profile
+                </Link>
+              </OverlayItem>
+              <OverlayItem>
+                <SignOutButton handleClick={() => setOpen(false)} />
+              </OverlayItem>
+            </Layout>
           </div>
-          <Layout>
-            <OverlayItem>
-              <Link to={ROUTES.PROFILE} onClick={() => setOpen(false)}>
-                Profile
-              </Link>
-            </OverlayItem>
-            <OverlayItem>
-              <SignOutButton handleClick={() => setOpen(false)} />
-            </OverlayItem>
-          </Layout>
         </Overlay>
-      )}
+      ) : null}
     </Fragment>
   );
 };

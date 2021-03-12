@@ -1,19 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
-import { EDIT_POST } from "constants/routes";
+import * as ROUTES from "constants/routes";
 import style from "./card.module";
+import Button from "components/Button";
 
 const capitalize = (string) => `${string[0].toUpperCase()}${string.slice(1)}`;
 
+const countWords = (string) => string.split(" ").length;
+
+const trunc = (limit) => (string) =>
+  string.split(" ").slice(0, limit).join(" ");
+
 const Card = (props) => {
-  console.log(props);
   const { title, content } = props;
   const history = useHistory();
+  const contentLength = 25;
+  const displayLearnMore = countWords(content) > contentLength;
 
   const handleClick = () => {
     const location = {
-      pathname: EDIT_POST,
+      pathname: ROUTES.JOURNAL,
       state: props,
     };
 
@@ -21,9 +28,14 @@ const Card = (props) => {
   };
 
   return (
-    <div onClick={handleClick} className={style.container}>
+    <div className={style.container}>
       <div className={style.title}>{capitalize(title)}</div>
-      <div className={style.content}>{content}</div>
+      <div className={style.content}>
+        {displayLearnMore ? `${trunc(contentLength)(content)}...` : content}
+      </div>
+      {displayLearnMore ? (
+        <Button text="Learn More" handleClick={handleClick} />
+      ) : null}
     </div>
   );
 };
