@@ -3,7 +3,6 @@ import app from "firebase/app";
 import "firebase/auth";
 import "firebase/storage";
 import "firebase/database";
-import { AUDIO_POST } from "constants/firebase";
 
 const config = {
   apiKey: process.env.API_KEY,
@@ -65,8 +64,8 @@ class Firebase {
     return newPostRef.set(payload);
   }
 
-  getAllPosts(uid) {
-    return this.databaseRef.child(uid).child(AUDIO_POST).get();
+  getData(uid, path) {
+    return this.databaseRef.child(uid).child(path).get();
   }
 }
 
