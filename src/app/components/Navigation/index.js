@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import * as ROUTES from "constants/routes";
 import { useAuth } from "session/authUser";
 import { useFirebase } from "firebaseUtils";
-import styles from "./navigation.module";
+import style from "./navigation.module";
 import Overlay from "components/Overlay";
 import Layout from "components/Layouts";
 
@@ -12,7 +12,7 @@ import Layout from "components/Layouts";
 // replace profile with onClick display overlay
 
 const OverlayItem = ({ children }) => (
-  <div className={styles.overlay}>{children}</div>
+  <div className={style.overlay}>{children}</div>
 );
 
 const SignOutButton = ({ handleClick }) => {
@@ -29,8 +29,8 @@ const Navigation = () => {
   const authUser = useAuth();
 
   return (
-    <nav className={styles.container}>
-      <ul className={styles.nav}>
+    <nav className={style.container}>
+      <ul className={style.nav}>
         {authUser ? <PrivateNavigation /> : <PublicNavigation />}
       </ul>
     </nav>
@@ -72,8 +72,8 @@ const PrivateNavigation = () => {
       </li>
       {open ? (
         <Overlay handleClose={() => setOpen(false)}>
-          <div className={styles.overlayProfile}>
-            <div className={styles.closeBtn}>
+          <div className={style.overlayProfile}>
+            <div className={style.closeBtn}>
               <i className="fas fa-times" onClick={() => setOpen(false)}></i>
             </div>
             <Layout>

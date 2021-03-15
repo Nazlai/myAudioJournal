@@ -1,18 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styles from "./input.module";
+import style from "./input.module";
 
 const Input = (props) => (
-  <div className={styles.container}>
-    <input className={styles.input} {...props} />
+  <div className={style.container}>
+    <input className={style.input} {...props} />
   </div>
 );
 
 export const TextArea = ({ cols = 30, rows = 8, ...rest }) => {
   return (
-    <div className={styles.container}>
+    <div className={style.container}>
       <textarea
-        className={styles.textArea}
+        className={style.textArea}
         cols={cols}
         rows={rows}
         maxLength={200}

@@ -1,18 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styles from "./button.module";
+import style from "./button.module";
 
 const Button = ({ handleClick, text }) => {
   return (
-    <button className={styles.btn} type="button" onClick={handleClick}>
+    <button className={style.btn} type="button" onClick={handleClick}>
       {text}
     </button>
   );
 };
 
 export const SubmitButton = ({ text = "Submit", ...rest }) => (
-  <div className={styles.submitBtnContainer}>
-    <button className={`${styles.btn} ${styles.submitBtn}`} {...rest}>
+  <div className={style.submitBtnContainer}>
+    <button className={`${style.btn} ${style.submitBtn}`} {...rest}>
       {text}
     </button>
   </div>

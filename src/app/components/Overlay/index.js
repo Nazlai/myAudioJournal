@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
-import styles from "./overlay.module";
+import style from "./overlay.module";
 
 const portalRoot = document.getElementById("portal-root");
 
@@ -12,7 +12,7 @@ const Overlay = (props) => {
   }, []);
 
   return ReactDOM.createPortal(
-    <div className={styles.container} onClick={props.handleClose || ((n) => n)}>
+    <div className={style.container} onClick={props.handleClose || ((n) => n)}>
       {props.children}
     </div>,
     portalRoot
