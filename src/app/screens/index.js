@@ -7,6 +7,8 @@ import SignIn from "screens/SignIn";
 import SignUp from "screens/SignUp";
 import NotFound from "screens/NotFound";
 import PasswordReset from "screens/PasswordReset";
+import Landing from "screens/Landing";
+import EmailVerification from "screens/EmailVerification";
 
 export {
   CreatePost,
@@ -18,4 +20,6 @@ export {
   SignUp,
   NotFound,
   PasswordReset,
+  Landing,
+  EmailVerification,
 };
