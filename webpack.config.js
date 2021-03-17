@@ -80,13 +80,14 @@ const webpackConfig = {
   },
   devServer: {
     historyApiFallback: true,
+    open: true,
   },
   devtool: "source-map",
   plugins: [
     new webpack.DefinePlugin({
       "process.env": JSON.stringify(dotenv.parsed),
     }),
-    new HtmlWebpackPlugin({ template: "/src/app/index.html" }),
+    new HtmlWebpackPlugin({ template: "./src/app/index.html" }),
     new MiniCssExtractPlugin({
       filename: isDevelopment ? "[name].css" : "[name].[hash].css",
       chunkFilename: isDevelopment ? "[id].css" : "[id].[hash].css",
