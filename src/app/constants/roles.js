@@ -1,0 +1,7 @@
+const ROLES = {
+  FULL_USER: "FULL_USER",
+  UNVERIFIED_USER: "UNVERIFIED_USER",
+  VISITOR: "VISITOR",
+};
+
+export default ROLES;
