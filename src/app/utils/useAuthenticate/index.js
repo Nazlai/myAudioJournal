@@ -1,26 +1,26 @@
 import { useState, useEffect } from "react";
 import { useFirebase } from "firebaseUtils";
-import { normalizeUser } from "utils";
+import { normalizeUser, assignRole } from "utils";
 
 const useAuthenticate = () => {
   const [loading, setLoading] = useState(true);
-  const [authUser, setAuthUser] = useState(null);
+  const [authUser, setAuthUser] = useState({});
   const firebase = useFirebase();
 
   useEffect(() => {
     const listener = firebase.auth.onAuthStateChanged((authUser) => {
       if (authUser) {
-        setAuthUser(normalizeUser(authUser));
+        setAuthUser(assignRole(normalizeUser(authUser)));
         setLoading(false);
       } else {
-        setAuthUser(false);
+        setAuthUser({});
         setLoading(false);
       }
     });
     return listener;
   }, [firebase]);
 
-  return [loading, authUser];
+  return [authUser, loading];
 };
 
 export default useAuthenticate;

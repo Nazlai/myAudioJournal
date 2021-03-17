@@ -12,7 +12,7 @@ const PrivateRoute = ({
   condition = defaultCondition,
   ...options
 }) => {
-  const [loading, authUser] = useAuthenticate();
+  const [authUser, loading] = useAuthenticate();
 
   if (loading) {
     return (

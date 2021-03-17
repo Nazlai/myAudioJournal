@@ -12,7 +12,7 @@ const AuthenticatedRoute = ({
   condition = defaultCondition,
   ...options
 }) => {
-  const [loading, authUser] = useAuthenticate();
+  const [authUser, loading] = useAuthenticate();
 
   if (loading) {
     return (
@@ -24,7 +24,7 @@ const AuthenticatedRoute = ({
 
   return (
     <Route {...options}>
-      {!condition(authUser) ? children : <Redirect to={ROUTES.HOME} />}
+      {!condition(authUser) ? children : <Redirect to={ROUTES.LANDING} />}
     </Route>
   );
 };
