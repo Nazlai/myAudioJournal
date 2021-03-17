@@ -25,10 +25,12 @@ const CreatePost = () => {
 
     const { uid } = auth;
     const path = `${uid}/${AUDIO_POST}`;
+    const date = new Date().toISOString();
     const payload = {
       title: postTitle,
       journal: postJournal,
       audio: postAudio.fullPath || "",
+      date: date,
     };
 
     firebase

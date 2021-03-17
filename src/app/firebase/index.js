@@ -64,6 +64,11 @@ class Firebase {
     return newPostRef.set(payload);
   }
 
+  setUserData(path, payload) {
+    const dbPostRef = this.databaseRef.child(path);
+    return dbPostRef.set(payload);
+  }
+
   getData(uid, path) {
     return this.databaseRef.child(uid).child(path).get();
   }

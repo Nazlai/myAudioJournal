@@ -4,6 +4,7 @@ import style from "./feed.module";
 import { useFirebase } from "firebaseUtils";
 import { useAuth } from "session/authUser";
 import Layout, { TopLayout } from "components/Layouts";
+import { AUDIO_POST } from "constants/firebase";
 // 3/9 TODO
 // fix Feed styles
 
@@ -16,7 +17,7 @@ const Feed = () => {
   // useEffect(() => {
   //   if (uid) {
   //     firebase
-  //       .getAllPosts(uid)
+  //       .getData(uid, AUDIO_POST)
   //       .then((snapShot) => {
   //         console.log(snapShot, snapShot.val());
   //         setFeed(snapShot.val());
@@ -46,6 +47,7 @@ const Feed = () => {
                 title: "hello",
                 content:
                   "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi, natus obcaecati. Incidunt necessitatibus adipisci dicta debitis deserunt sit atque, aliquam accusantium excepturi! Pariatur veniam consectetur earum amet quam dignissimos sed.",
+                date: new Date().toISOString(),
               },
               {
                 title: "world",

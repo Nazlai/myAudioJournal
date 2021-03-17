@@ -33,9 +33,7 @@ const Card = (props) => {
       <div className={style.content}>
         {displayLearnMore ? `${trunc(contentLength)(content)}...` : content}
       </div>
-      {displayLearnMore ? (
-        <Button text="Learn More" handleClick={handleClick} />
-      ) : null}
+      <Button text="Learn More" handleClick={handleClick} />
     </div>
   );
 };
