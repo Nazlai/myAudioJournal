@@ -12,7 +12,7 @@
   background-color: $secondaryColor;
 }
 
-.submitBtn:disabled {
+:is(.btn, .submitBtn):disabled {
   background-color: $disabledColor;
   color: $disabledText;
 }
