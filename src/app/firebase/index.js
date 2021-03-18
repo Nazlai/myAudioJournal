@@ -50,12 +50,12 @@ class Firebase {
     return this.auth.currentUser.updatePassword(password);
   }
 
-  doCreateChildRef(fileName) {
-    return this.storageRef.child(fileName);
+  doSendVerificationEmail() {
+    return this.auth.currentUser.sendEmailVerification();
   }
 
-  doUploadFile(fileName, file) {
-    return this.doCreateChildRef(fileName).put(file);
+  doCreateChildRef(fileName) {
+    return this.storageRef.child(fileName);
   }
 
   createPost(path, payload) {

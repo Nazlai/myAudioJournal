@@ -1,0 +1,17 @@
+@import "~styles/colors";
+
+.audioLabel {
+  padding: 0.5rem 1rem;
+  background-color: $secondaryColor;
+  color: $textColor;
+  border: none;
+  border-radius: 2px;
+}
+
+.audio {
+  display: none;
+}
+
+.loadingContainer {
+  background-color: rgba($disabledColor, 0.5);
+}

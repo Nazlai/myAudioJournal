@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
-import UploadFile from "components/UploadFile";
 import Input, { TextArea } from "components/Input";
 import { SubmitButton } from "components/Button";
-import { TopLayout } from "components/Layouts";
+import Layout, { TopLayout } from "components/Layouts";
+import Spinner from "components/Spinner";
+import Overlay from "components/Overlay";
 import { useFirebase } from "firebaseUtils";
 import { useAuth } from "session/authUser";
 import { AUDIO_POST } from "constants/firebase";
 import * as ROUTES from "constants/routes";
 import JournalForm, { FormItem } from "components/JournalForm";
+import style from "./createPost.module";
+import useUpload from "utils/useUpload";
+import * as LOAD_STATE from "constants/upload";
+import Warning from "components/Warning";
 
 // 3/10 move post form into separate component
 
@@ -16,9 +21,13 @@ const CreatePost = () => {
   const firebase = useFirebase();
   const auth = useAuth();
   const history = useHistory();
+  const fileRef = useRef(null);
   const [postTitle, setPostTitle] = useState("");
   const [postJournal, setPostJournal] = useState("");
-  const [postAudio, setPostAudio] = useState({});
+  const { email = "" } = auth;
+  const [file, setFile] = useState("");
+  const storageRef = firebase.doCreateChildRef(email);
+  const { loadState, url, error } = useUpload(storageRef, file);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -29,7 +38,7 @@ const CreatePost = () => {
     const payload = {
       title: postTitle,
       journal: postJournal,
-      audio: postAudio.fullPath || "",
+      audio: url.fullPath || "",
       date: date,
     };
 
@@ -66,8 +75,31 @@ const CreatePost = () => {
           <TextArea value={postJournal} onChange={setter(setPostJournal)} />
         </FormItem>
         <FormItem label="Audio File:">
-          {postAudio.name ? <p>{postAudio.name}</p> : null}
-          <UploadFile handleClick={setPostAudio} accept="audio/*" />
+          <label className={style.audioLabel}>
+            Upload
+            <input
+              type="file"
+              accept="audio/*"
+              className={style.audio}
+              ref={fileRef}
+              onChange={(event) => {
+                event.preventDefault();
+                const file = fileRef.current.files[0];
+                setFile(file);
+              }}
+            />
+          </label>
+          {url.name ? <p>{url.name}</p> : null}
+          {error ? <Warning text={error.message} /> : null}
+          {loadState === LOAD_STATE.RUNNING ? (
+            <Overlay>
+              <div className={style.loadingContainer}>
+                <Layout>
+                  <Spinner />
+                </Layout>
+              </div>
+            </Overlay>
+          ) : null}
         </FormItem>
         <SubmitButton disabled={isInvalid} />
       </JournalForm>
