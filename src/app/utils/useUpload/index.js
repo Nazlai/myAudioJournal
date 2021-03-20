@@ -1,5 +1,3 @@
-// TODO 3/18
-// extract upload logic
 import { useState, useEffect } from "react";
 import * as LOAD_STATE from "constants/upload";
 

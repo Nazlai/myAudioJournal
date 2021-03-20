@@ -72,6 +72,10 @@ class Firebase {
   getData(uid, path) {
     return this.databaseRef.child(uid).child(path).get();
   }
+
+  getStorageItem(path) {
+    return this.storageRef.child(path).getDownloadURL();
+  }
 }
 
 export default Firebase;
