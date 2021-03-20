@@ -2,13 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import style from "./journalForm.module";
 
-const JournalForm = ({ children, handleSubmit }) => (
+export const JournalForm = ({ children, handleSubmit }) => (
   <form className={style.form} onSubmit={handleSubmit}>
     {children}
   </form>
 );
 
-export const FormItem = ({ children, label }) => {
+export const JournalFormItem = ({ children, label }) => {
   return (
     <div className={style.container}>
       <p className={style.label}>{label}</p>
@@ -17,9 +17,7 @@ export const FormItem = ({ children, label }) => {
   );
 };
 
-FormItem.propTypes = {
+JournalFormItem.propTypes = {
   children: PropTypes.node,
   label: PropTypes.string,
 };
-
-export default JournalForm;

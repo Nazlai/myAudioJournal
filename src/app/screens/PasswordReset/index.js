@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import Layout from "components/Layouts";
-import Input from "components/Input";
-import { SubmitButton } from "components/Button";
 import { useFirebase } from "firebaseUtils";
+import { Layout, Input, SubmitButton } from "components";
 
 const PasswordReset = () => (
   <Layout>

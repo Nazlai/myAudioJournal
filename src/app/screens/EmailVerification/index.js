@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import Layout from "components/Layouts";
-import Button from "components/Button";
 import { useFirebase } from "firebaseUtils";
-import Warning from "components/Warning";
+import { Layout, Button, Warning } from "components";
 
 const EmailVerification = () => {
   const [error, setError] = useState("");
   const [disable, setDisable] = useState(false);
   const firebase = useFirebase();
+
   const handleClick = () => {
     firebase.doSendVerificationEmail().catch((error) => {
       setDisable(true);

@@ -11,9 +11,11 @@ import {
   SignUp,
   NotFound,
   PasswordReset,
+  Landing,
+  EmailVerification,
 } from "screens";
-import PrivateRoute from "components/PrivateRoute";
-import AuthenticatedRoute from "components/AuthenticatedRoute";
+import { AuthenticatedRoute, PrivateRoute } from "components";
+import { isUserUniqueAndVerified } from "utils";
 
 // TODO 3/10
 // reconsider landing, is it necessary?
@@ -21,11 +23,16 @@ import AuthenticatedRoute from "components/AuthenticatedRoute";
 const Routes = () => {
   return (
     <Switch>
-      <Route exact path={ROUTES.LANDING}></Route>
+      <Route exact path={ROUTES.LANDING}>
+        <Landing />
+      </Route>
       <PrivateRoute path={ROUTES.HOME}>
         <Feed />
       </PrivateRoute>
-      <AuthenticatedRoute path={ROUTES.SIGN_IN}>
+      <AuthenticatedRoute
+        path={ROUTES.SIGN_IN}
+        condition={isUserUniqueAndVerified}
+      >
         <SignIn />
       </AuthenticatedRoute>
       <AuthenticatedRoute path={ROUTES.SIGN_UP}>
@@ -34,6 +41,12 @@ const Routes = () => {
       <AuthenticatedRoute path={ROUTES.PASSWORD_RESET}>
         <PasswordReset />
       </AuthenticatedRoute>
+      <PrivateRoute
+        path={ROUTES.VERIFY_EMAIL}
+        condition={(x) => x.uid && !x.emailVerified}
+      >
+        <EmailVerification />
+      </PrivateRoute>
       <PrivateRoute path={ROUTES.PROFILE}>
         <Profile />
       </PrivateRoute>

@@ -4,10 +4,9 @@ import { Route, Redirect } from "react-router-dom";
 import * as ROUTES from "constants/routes";
 import useAuthenticate from "utils/useAuthenticate";
 import { defaultCondition } from "utils";
-import Spinner from "components/Spinner";
-import Layout from "components/Layouts";
+import { Spinner, Layout } from "components";
 
-const PrivateRoute = ({
+export const PrivateRoute = ({
   children,
   condition = defaultCondition,
   ...options
@@ -33,5 +32,3 @@ PrivateRoute.propTypes = {
   children: PropTypes.node,
   condition: PropTypes.func,
 };
-
-export default PrivateRoute;

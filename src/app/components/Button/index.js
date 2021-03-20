@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import style from "./button.module";
 
-const Button = ({ handleClick, text, type = "button", ...options }) => {
+export const Button = ({ handleClick, text, type = "button", ...options }) => {
   return (
     <button
       className={style.btn}
@@ -28,5 +28,3 @@ Button.propTypes = {
 SubmitButton.propTypes = {
   text: PropTypes.string,
 };
-
-export default Button;

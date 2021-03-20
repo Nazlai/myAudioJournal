@@ -2,11 +2,14 @@ import React, { useReducer, Fragment } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useFirebase } from "firebaseUtils";
 import * as ROUTES from "constants/routes";
-import { actionCreator, handleChange } from "utils";
-import Input from "components/Input";
-import { SubmitButton } from "components/Button";
-import Warning from "components/Warning";
-import Layout from "components/Layouts";
+import {
+  actionCreator,
+  handleChange,
+  normalizeUser,
+  isUserUniqueAndVerified,
+} from "utils";
+import { Input, SubmitButton, Warning, Layout } from "components";
+import style from "./signIn.module.scss";
 
 // add authenticated route
 
@@ -65,8 +68,12 @@ const SignInForm = () => {
 
     firebase
       .doSignInWithEmailAndPassword(email, password)
-      .then(() => {
-        history.push(ROUTES.HOME);
+      .then((snapShot) => {
+        if (isUserUniqueAndVerified(normalizeUser(snapShot.user))) {
+          history.push(ROUTES.HOME);
+        } else {
+          history.push(ROUTES.VERIFY_EMAIL);
+        }
       })
       .catch((error) => dispatch(errorType(error)));
   };
@@ -90,7 +97,9 @@ const SignInForm = () => {
           onChange={handleChange(actionType.SET_PASSWORD, dispatch)}
         />
         {error && <Warning text={error.message} />}
-        <SubmitButton disabled={isInvalid} text="Sign In" />
+        <div className={style.bottomContainer}>
+          <SubmitButton disabled={isInvalid} text="Sign In" />
+        </div>
       </form>
     </Fragment>
   );

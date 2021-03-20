@@ -3,10 +3,8 @@ import { useHistory } from "react-router-dom";
 import { useFirebase } from "firebaseUtils";
 import * as ROUTES from "constants/routes";
 import { actionCreator, handleChange } from "utils";
-import Input from "components/Input";
-import { SubmitButton } from "components/Button";
-import Warning from "components/Warning";
-import Layout from "components/Layouts";
+import { Input, SubmitButton, Warning, Layout } from "components";
+import style from "./signUp.module";
 
 const SignUp = () => (
   <Layout>
@@ -60,7 +58,7 @@ const SignUpForm = () => {
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(() => {
         dispatch({ type: actionType.SIGNUP_SUCCESS });
-        history.push(ROUTES.HOME);
+        history.push(ROUTES.VERIFY_EMAIL);
       })
       .catch((error) => dispatch(errorType(error)));
   };
@@ -95,8 +93,9 @@ const SignUpForm = () => {
           onChange={handleChange(actionType.SET_PASSWORD_TWO, dispatch)}
         />
         {error && <Warning text={error.message} />}
-
-        <SubmitButton disabled={isInvalid} text="Sign Up" />
+        <div className={style.bottomContainer}>
+          <SubmitButton disabled={isInvalid} text="Sign Up" />
+        </div>
       </form>
     </Fragment>
   );

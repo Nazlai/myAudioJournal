@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
 import * as ROUTES from "constants/routes";
 import style from "./card.module";
-import Button from "components/Button";
+import { Button } from "components";
+import { parseDate } from "utils";
 
 const capitalize = (string) => `${string[0].toUpperCase()}${string.slice(1)}`;
 
@@ -12,8 +13,8 @@ const countWords = (string) => string.split(" ").length;
 const trunc = (limit) => (string) =>
   string.split(" ").slice(0, limit).join(" ");
 
-const Card = (props) => {
-  const { title, content } = props;
+export const Card = (props) => {
+  const { title, content, date } = props;
   const history = useHistory();
   const contentLength = 25;
   const displayLearnMore = countWords(content) > contentLength;
@@ -30,10 +31,11 @@ const Card = (props) => {
   return (
     <div className={style.container}>
       <div className={style.title}>{capitalize(title)}</div>
+      <p>{parseDate(date)}</p>
       <div className={style.content}>
         {displayLearnMore ? `${trunc(contentLength)(content)}...` : content}
       </div>
-      <Button text="Learn More" handleClick={handleClick} />
+      <Button text="View" handleClick={handleClick} />
     </div>
   );
 };
@@ -42,5 +44,3 @@ Card.propTypes = {
   title: PropTypes.string,
   content: PropTypes.string,
 };
-
-export default Card;

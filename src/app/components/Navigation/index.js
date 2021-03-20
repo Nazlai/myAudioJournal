@@ -4,12 +4,12 @@ import * as ROUTES from "constants/routes";
 import { useAuth } from "session/authUser";
 import { useFirebase } from "firebaseUtils";
 import style from "./navigation.module";
-import Overlay from "components/Overlay";
-import Layout from "components/Layouts";
+import { Overlay, Layout } from "components";
+import ROLES from "constants/roles";
 
-// needs styling
-// replace text with icons
-// replace profile with onClick display overlay
+// TODO 3/17
+// youve removed the route ui for unverified_users
+// need to handle the route component too
 
 const OverlayItem = ({ children }) => (
   <div className={style.overlay}>{children}</div>
@@ -25,13 +25,24 @@ const SignOutButton = ({ handleClick }) => {
   return <a onClick={onClick}>Sign Out</a>;
 };
 
-const Navigation = () => {
+const getNav = (user) => {
+  return (
+    {
+      [ROLES.FULL_USER]: PrivateNavigation,
+      [ROLES.UNVERIFIED_USER]: PrivateNavigation,
+      [ROLES.VISITOR]: PublicNavigation,
+    }[user.role] || PublicNavigation
+  );
+};
+
+export const Navigation = () => {
   const authUser = useAuth();
+  const Nav = getNav(authUser);
 
   return (
     <nav className={style.container}>
       <ul className={style.nav}>
-        {authUser ? <PrivateNavigation /> : <PublicNavigation />}
+        <Nav user={authUser} />
       </ul>
     </nav>
   );
@@ -47,24 +58,31 @@ const PublicNavigation = () => {
   );
 };
 
-const PrivateNavigation = () => {
+const PrivateNavigation = ({ user }) => {
   const [open, setOpen] = useState(false);
+  const isFullUser = user.role.includes(ROLES.FULL_USER);
+  const route = isFullUser ? ROUTES.LANDING : ROUTES.VERIFY_EMAIL;
 
   return (
     <Fragment>
       <li>
-        <Link to={ROUTES.HOME}>MAJ</Link>
+        <Link to={route}>MAJ</Link>
       </li>
-      <li>
-        <Link to={ROUTES.HOME}>
-          <i className="fas fa-home"></i>
-        </Link>
-      </li>
-      <li>
-        <Link to={ROUTES.CREATE_POST}>
-          <i className="fas fa-book-open"></i>
-        </Link>
-      </li>
+      {isFullUser ? (
+        <Fragment>
+          <li>
+            <Link to={ROUTES.HOME}>
+              <i className="fas fa-home"></i>
+            </Link>
+          </li>
+          <li>
+            <Link to={ROUTES.CREATE_POST}>
+              <i className="fas fa-book-open"></i>
+            </Link>
+          </li>
+        </Fragment>
+      ) : null}
+
       <li>
         <a onClick={() => setOpen(!open)}>
           <i className="fas fa-user"></i>
@@ -77,11 +95,13 @@ const PrivateNavigation = () => {
               <i className="fas fa-times" onClick={() => setOpen(false)}></i>
             </div>
             <Layout>
-              <OverlayItem>
-                <Link to={ROUTES.PROFILE} onClick={() => setOpen(false)}>
-                  Profile
-                </Link>
-              </OverlayItem>
+              {isFullUser ? (
+                <OverlayItem>
+                  <Link to={ROUTES.PROFILE} onClick={() => setOpen(false)}>
+                    Profile
+                  </Link>
+                </OverlayItem>
+              ) : null}
               <OverlayItem>
                 <SignOutButton handleClick={() => setOpen(false)} />
               </OverlayItem>
@@ -92,5 +112,3 @@ const PrivateNavigation = () => {
     </Fragment>
   );
 };
-
-export default Navigation;

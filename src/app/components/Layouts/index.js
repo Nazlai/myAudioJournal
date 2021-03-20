@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import style from "./layout.module";
 
-const BaseLayout = ({ children }) => (
+export const BaseLayout = ({ children }) => (
   <div className={style.container}>
     <div className={style.content}>{children}</div>
   </div>
@@ -17,5 +17,3 @@ export const TopLayout = ({ children }) => (
 TopLayout.propTypes = {
   children: PropTypes.node,
 };
-
-export default BaseLayout;

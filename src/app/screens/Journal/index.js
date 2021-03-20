@@ -1,9 +1,8 @@
 import React from "react";
-import { TopLayout } from "components/Layouts";
 import { useHistory } from "react-router-dom";
-import AudioPlayer from "components/AudioPlayer";
-import style from "./journal.module";
+import { TopLayout, AudioPlayer } from "components";
 import { parseDate } from "utils";
+import style from "./journal.module";
 
 const Journal = () => {
   const history = useHistory();

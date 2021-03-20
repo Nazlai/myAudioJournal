@@ -1,19 +1,25 @@
 import React, { useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
-import Input, { TextArea } from "components/Input";
-import { SubmitButton } from "components/Button";
-import Layout, { TopLayout } from "components/Layouts";
-import Spinner from "components/Spinner";
-import Overlay from "components/Overlay";
 import { useFirebase } from "firebaseUtils";
 import { useAuth } from "session/authUser";
 import { AUDIO_POST } from "constants/firebase";
 import * as ROUTES from "constants/routes";
-import JournalForm, { FormItem } from "components/JournalForm";
-import style from "./createPost.module";
-import useUpload from "utils/useUpload";
 import * as LOAD_STATE from "constants/upload";
-import Warning from "components/Warning";
+import useUpload from "utils/useUpload";
+
+import {
+  Layout,
+  TopLayout,
+  JournalForm,
+  FormItem,
+  Input,
+  TextArea,
+  SubmitButton,
+  Spinner,
+  Overlay,
+  Warning,
+} from "components";
+import style from "./createPost.module";
 
 // 3/10 move post form into separate component
 
@@ -101,7 +107,9 @@ const CreatePost = () => {
             </Overlay>
           ) : null}
         </FormItem>
-        <SubmitButton disabled={isInvalid} />
+        <div className={style.bottomContainer}>
+          <SubmitButton disabled={isInvalid} />
+        </div>
       </JournalForm>
     </TopLayout>
   );

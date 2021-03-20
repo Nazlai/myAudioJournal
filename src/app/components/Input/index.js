@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import style from "./input.module";
 
-const Input = (props) => (
+export const Input = (props) => (
   <div className={style.container}>
     <input className={style.input} {...props} />
   </div>
@@ -26,5 +26,3 @@ TextArea.propTypes = {
   cols: PropTypes.number,
   rows: PropTypes.number,
 };
-
-export default Input;

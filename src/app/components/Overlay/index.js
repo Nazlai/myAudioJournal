@@ -4,7 +4,7 @@ import style from "./overlay.module";
 
 const portalRoot = document.getElementById("portal-root");
 
-const Overlay = (props) => {
+export const Overlay = (props) => {
   useEffect(() => {
     const root = document.getElementById("root");
     root.style.overflow = "hidden";
@@ -18,5 +18,3 @@ const Overlay = (props) => {
     portalRoot
   );
 };
-
-export default Overlay;
