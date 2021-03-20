@@ -3,6 +3,7 @@
 
 .audioLabel {
   @include primaryButton;
+  margin: 0;
 }
 
 .audio {
