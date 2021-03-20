@@ -2,11 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import style from "./button.module";
 
-const Button = ({ handleClick, text, ...options }) => {
+const Button = ({ handleClick, text, type = "button", ...options }) => {
   return (
     <button
       className={style.btn}
-      type="button"
+      type={type}
       onClick={handleClick}
       {...options}
     >
@@ -16,16 +16,12 @@ const Button = ({ handleClick, text, ...options }) => {
 };
 
 export const SubmitButton = ({ text = "Submit", ...rest }) => (
-  <div className={style.submitBtnContainer}>
-    <button className={`${style.btn} ${style.submitBtn}`} {...rest}>
-      {text}
-    </button>
-  </div>
+  <Button type="submit" text={text} {...rest} />
 );
 
 Button.propTypes = {
   handleClick: PropTypes.func,
-  text: PropTypes.string,
+  text: PropTypes.string.isRequired,
   type: PropTypes.string,
 };
 

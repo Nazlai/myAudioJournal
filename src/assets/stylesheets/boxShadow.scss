@@ -1,0 +1,7 @@
+@import "./colors.scss";
+
+@mixin boxShadow($boxShadowColor: $darkText) {
+  border-radius: 4px;
+  box-shadow: 0 4px 6px -3px $boxShadowColor;
+  border: 2px solid $lightTextColor;
+}

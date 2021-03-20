@@ -1,15 +1,8 @@
 @import "~styles/colors";
-
-.submitBtnContainer {
-  margin: 1.5rem 0;
-}
+@import "~styles/button";
 
 .btn {
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 2px;
-  color: $textColor;
-  background-color: $secondaryColor;
+  @include primaryButton;
 }
 
 :is(.btn, .submitBtn):disabled {

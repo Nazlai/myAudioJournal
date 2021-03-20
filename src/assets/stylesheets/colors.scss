@@ -2,6 +2,8 @@ $primaryColor: #24c6ad;
 $darkPrimaryColor: darken($primaryColor, 10%);
 $secondaryColor: #248ec6;
 $textColor: #f8f8ff;
+$lightTextColor: lighten($textColor, 10%);
 $disabledColor: #c7c7c7;
 $disabledText: darken($disabledColor, 20%);
 $errorColor: #c6243d;
+$darkText: #3e3e3e;

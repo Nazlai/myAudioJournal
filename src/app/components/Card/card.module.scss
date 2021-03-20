@@ -1,10 +1,11 @@
 @import "~styles/colors";
+@import "~styles/boxShadow";
 
 .container {
-  border: 2px solid $primaryColor;
+  @include boxShadow;
   color: $primaryColor;
   padding: 1rem;
-  margin: 1rem 0;
+  margin: 1.5rem 0;
 }
 
 .title,

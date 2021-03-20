@@ -1,0 +1,9 @@
+@import "./colors.scss";
+
+@mixin primaryButton {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 2px;
+  color: $textColor;
+  background-color: $secondaryColor;
+}

@@ -1,11 +1,8 @@
 @import "~styles/colors";
+@import "~styles/button";
 
 .audioLabel {
-  padding: 0.5rem 1rem;
-  background-color: $secondaryColor;
-  color: $textColor;
-  border: none;
-  border-radius: 2px;
+  @include primaryButton;
 }
 
 .audio {
@@ -14,4 +11,8 @@
 
 .loadingContainer {
   background-color: rgba($disabledColor, 0.5);
+}
+
+.bottomContainer {
+  margin-top: 1.5rem;
 }

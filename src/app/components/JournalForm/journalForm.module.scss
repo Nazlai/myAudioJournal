@@ -1,4 +1,8 @@
+@import "~styles/colors";
+@import "~styles/boxShadow";
+
 .form {
+  @include boxShadow;
   padding: 1rem;
 }
 
