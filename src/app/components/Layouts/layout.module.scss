@@ -1,5 +1,7 @@
+@import "~styles/constant";
+
 .container {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,6 +10,7 @@
 
 .container::before {
   content: "";
+  height: $navigationHeight;
 }
 
 .container::before,
@@ -15,9 +18,13 @@
   flex-grow: 1;
 }
 
+.content {
+  width: 100%;
+}
+
 .topContainer {
   height: 100vh;
   padding: 1rem;
-  padding-top: 3.125rem;
+  padding-top: $navigationHeight;
   overflow: auto;
 }

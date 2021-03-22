@@ -1,9 +1,9 @@
-import React, { useReducer, Fragment } from "react";
+import React, { useReducer } from "react";
 import { useHistory } from "react-router-dom";
 import { useFirebase } from "firebaseUtils";
 import * as ROUTES from "constants/routes";
 import { actionCreator, handleChange } from "utils";
-import { Input, SubmitButton, Warning, Layout } from "components";
+import { Input, SubmitButton, Warning, Layout, Form } from "components";
 import style from "./signUp.module";
 
 const SignUp = () => (
@@ -72,32 +72,30 @@ const SignUpForm = () => {
     passwordOne !== passwordTwo;
 
   return (
-    <Fragment>
-      <form onSubmit={handleSubmit}>
-        <Input
-          type="text"
-          placeholder="email"
-          value={email}
-          onChange={handleChange(actionType.SET_EMAIL, dispatch)}
-        />
-        <Input
-          type="password"
-          placeholder="password"
-          value={passwordOne}
-          onChange={handleChange(actionType.SET_PASSWORD_ONE, dispatch)}
-        />
-        <Input
-          type="password"
-          placeholder="confirm password"
-          value={passwordTwo}
-          onChange={handleChange(actionType.SET_PASSWORD_TWO, dispatch)}
-        />
-        {error && <Warning text={error.message} />}
-        <div className={style.bottomContainer}>
-          <SubmitButton disabled={isInvalid} text="Sign Up" />
-        </div>
-      </form>
-    </Fragment>
+    <Form handleSubmit={handleSubmit}>
+      <Input
+        type="text"
+        placeholder="email"
+        value={email}
+        onChange={handleChange(actionType.SET_EMAIL, dispatch)}
+      />
+      <Input
+        type="password"
+        placeholder="password"
+        value={passwordOne}
+        onChange={handleChange(actionType.SET_PASSWORD_ONE, dispatch)}
+      />
+      <Input
+        type="password"
+        placeholder="confirm password"
+        value={passwordTwo}
+        onChange={handleChange(actionType.SET_PASSWORD_TWO, dispatch)}
+      />
+      {error && <Warning text={error.message} />}
+      <div className={style.bottomContainer}>
+        <SubmitButton disabled={isInvalid} text="Sign Up" />
+      </div>
+    </Form>
   );
 };
 

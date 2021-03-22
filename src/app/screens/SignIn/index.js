@@ -1,4 +1,4 @@
-import React, { useReducer, Fragment } from "react";
+import React, { useReducer } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useFirebase } from "firebaseUtils";
 import * as ROUTES from "constants/routes";
@@ -8,10 +8,8 @@ import {
   normalizeUser,
   isUserUniqueAndVerified,
 } from "utils";
-import { Input, SubmitButton, Warning, Layout } from "components";
+import { Input, SubmitButton, Warning, Layout, Form } from "components";
 import style from "./signIn.module.scss";
-
-// add authenticated route
 
 const PasswordReset = () => {
   return <Link to={ROUTES.PASSWORD_RESET}>Forget Password?</Link>;
@@ -82,26 +80,24 @@ const SignInForm = () => {
   const isInvalid = email === "" || password === "";
 
   return (
-    <Fragment>
-      <form onSubmit={handleSubmit}>
-        <Input
-          type="text"
-          value={email}
-          placeholder="email"
-          onChange={handleChange(actionType.SET_EMAIL, dispatch)}
-        />
-        <Input
-          type="password"
-          placeholder="password"
-          value={password}
-          onChange={handleChange(actionType.SET_PASSWORD, dispatch)}
-        />
-        {error && <Warning text={error.message} />}
-        <div className={style.bottomContainer}>
-          <SubmitButton disabled={isInvalid} text="Sign In" />
-        </div>
-      </form>
-    </Fragment>
+    <Form handleSubmit={handleSubmit}>
+      <Input
+        type="text"
+        value={email}
+        placeholder="email"
+        onChange={handleChange(actionType.SET_EMAIL, dispatch)}
+      />
+      <Input
+        type="password"
+        placeholder="password"
+        value={password}
+        onChange={handleChange(actionType.SET_PASSWORD, dispatch)}
+      />
+      {error && <Warning text={error.message} />}
+      <div className={style.bottomContainer}>
+        <SubmitButton disabled={isInvalid} text="Sign In" />
+      </div>
+    </Form>
   );
 };
 
