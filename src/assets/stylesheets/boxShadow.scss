@@ -2,6 +2,6 @@
 
 @mixin boxShadow($boxShadowColor: $darkText) {
   border-radius: 4px;
-  box-shadow: 0 4px 6px -3px $boxShadowColor;
-  border: 2px solid $lightTextColor;
+  box-shadow: 0 3px 5px 0px $boxShadowColor;
+  border: 2px solid $textColor;
 }

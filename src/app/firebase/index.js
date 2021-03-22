@@ -3,6 +3,7 @@ import app from "firebase/app";
 import "firebase/auth";
 import "firebase/storage";
 import "firebase/database";
+import { normalizeUser } from "utils";
 
 const config = {
   apiKey: process.env.API_KEY,
@@ -50,6 +51,12 @@ class Firebase {
     return this.auth.currentUser.updatePassword(password);
   }
 
+  doUpdateUserProfile(payload) {
+    const user = this.auth.currentUser;
+    console.log(user);
+    return user.updateProfile(payload);
+  }
+
   doSendVerificationEmail() {
     return this.auth.currentUser.sendEmailVerification();
   }
@@ -75,6 +82,10 @@ class Firebase {
 
   getStorageItem(path) {
     return this.storageRef.child(path).getDownloadURL();
+  }
+
+  getUser() {
+    return normalizeUser(this.auth.currentUser);
   }
 }
 

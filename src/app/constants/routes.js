@@ -8,3 +8,4 @@ export const SIGN_IN = "/signin";
 export const SIGN_UP = "/signup";
 export const PASSWORD_RESET = "/password_reset";
 export const VERIFY_EMAIL = "/verify_email";
+export const PROFILE_EDIT = "/profile_edit";

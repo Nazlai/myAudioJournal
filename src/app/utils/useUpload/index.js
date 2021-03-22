@@ -21,8 +21,11 @@ const useUpload = (upload, file) => {
         },
         () => {
           setLoadState(LOAD_STATE.FINISHED);
-          const { fullPath, name } = uploadTask.snapshot.ref;
-          setUrl({ fullPath, name });
+          const { name } = uploadTask.snapshot.ref;
+
+          uploadTask.snapshot.ref
+            .getDownloadURL()
+            .then((downloadUrl) => setUrl({ fullPath: downloadUrl, name }));
         }
       );
     }

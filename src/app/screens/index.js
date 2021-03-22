@@ -1,14 +1,15 @@
-import CreatePost from "screens/CreatePost";
-import EditPost from "screens/EditPost";
-import Feed from "screens/Feed";
-import Journal from "screens/Journal";
-import Profile from "screens/Profile";
-import SignIn from "screens/SignIn";
-import SignUp from "screens/SignUp";
-import NotFound from "screens/NotFound";
-import PasswordReset from "screens/PasswordReset";
-import Landing from "screens/Landing";
-import EmailVerification from "screens/EmailVerification";
+import CreatePost from "./CreatePost";
+import EditPost from "./EditPost";
+import Feed from "./Feed";
+import Journal from "./Journal";
+import Profile from "./Profile";
+import SignIn from "./SignIn";
+import SignUp from "./SignUp";
+import NotFound from "./NotFound";
+import PasswordReset from "./PasswordReset";
+import Landing from "./Landing";
+import EmailVerification from "./EmailVerification";
+import ProfileEdit from "./ProfileEdit";
 
 export {
   CreatePost,
@@ -22,4 +23,5 @@ export {
   PasswordReset,
   Landing,
   EmailVerification,
+  ProfileEdit,
 };

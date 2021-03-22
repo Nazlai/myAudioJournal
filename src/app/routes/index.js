@@ -13,6 +13,7 @@ import {
   PasswordReset,
   Landing,
   EmailVerification,
+  ProfileEdit,
 } from "screens";
 import { AuthenticatedRoute, PrivateRoute } from "components";
 import { isUserUniqueAndVerified } from "utils";
@@ -49,6 +50,9 @@ const Routes = () => {
       </PrivateRoute>
       <PrivateRoute path={ROUTES.PROFILE}>
         <Profile />
+      </PrivateRoute>
+      <PrivateRoute path={ROUTES.PROFILE_EDIT}>
+        <ProfileEdit />
       </PrivateRoute>
       <PrivateRoute path={ROUTES.JOURNAL}>
         <Journal />

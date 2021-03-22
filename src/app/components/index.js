@@ -10,3 +10,4 @@ export { Overlay } from "./Overlay";
 export { PrivateRoute } from "./PrivateRoute";
 export { Spinner } from "./Spinner";
 export { Warning } from "./Warning";
+export { ProfileCard } from "./ProfileCard";
