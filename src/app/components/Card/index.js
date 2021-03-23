@@ -31,7 +31,7 @@ export const Card = (props) => {
   return (
     <div className={style.container}>
       <div className={style.title}>{capitalize(title)}</div>
-      <p>{parseDate(date)}</p>
+      <p>{date ? parseDate(date) : null}</p>
       <div className={style.content}>
         {displayLearnMore ? `${trunc(contentLength)(content)}...` : content}
       </div>
@@ -43,4 +43,5 @@ export const Card = (props) => {
 Card.propTypes = {
   title: PropTypes.string,
   content: PropTypes.string,
+  date: PropTypes.string,
 };
