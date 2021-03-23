@@ -7,23 +7,18 @@ import { TopLayout, Button, ProfileCard } from "components";
 import style from "./profile.module";
 
 const profileImgFallback =
-  "https://images.pexels.com/photos/3312275/pexels-photo-3312275.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940";
+  "https://images.pexels.com/photos/1179229/pexels-photo-1179229.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940";
 
 const Profile = () => {
   const firebase = useFirebase();
   const history = useHistory();
   const [bio, setBio] = useState("");
-  const {
-    name = "",
-    email = "",
-    uid,
-    photoURL = profileImgFallback,
-  } = firebase.getUser();
+  const { name, email = "", uid, photoURL } = firebase.getUser() || {};
 
   useEffect(() => {
     if (uid) {
       firebase.getData(uid, PROFILE).then((snapshot) => {
-        const { userBio } = snapshot.val();
+        const { userBio } = snapshot.val() || {};
         setBio(userBio);
       });
     }
@@ -33,10 +28,10 @@ const Profile = () => {
     const location = {
       pathname: ROUTES.PROFILE_EDIT,
       state: {
-        name,
+        name: name || "",
         bio,
         email,
-        photoURL,
+        photoURL: photoURL || profileImgFallback,
       },
     };
     history.push(location);
@@ -45,7 +40,7 @@ const Profile = () => {
   return (
     <TopLayout>
       <h1>Profile</h1>
-      <ProfileCard profileImg={photoURL}>
+      <ProfileCard profileImg={photoURL || profileImgFallback}>
         <ProfileCard.Slot name="topContainer">
           <p className={style.info}>{name || "Anonymous"}</p>
           <p className={style.info}>{email}</p>

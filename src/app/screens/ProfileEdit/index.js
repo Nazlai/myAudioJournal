@@ -13,13 +13,11 @@ const ProfileEdit = () => {
   const history = useHistory();
   const firebase = useFirebase();
   const authUser = useAuth();
-  const { email = "" } = authUser;
   const {
     location: { state },
   } = history;
-  const { name, bio, photoURL } = state;
+  const { name, bio, email, photoURL } = state;
   const [profileName, setProfileName] = useState(name);
-  const [profileImage] = useState(photoURL);
   const [profileBio, setProfileBio] = useState(bio);
   const [file, setFile] = useState("");
   const { _, url } = useUpload(firebase.doCreateChildRef(email), file);
@@ -29,6 +27,8 @@ const ProfileEdit = () => {
     const path = `${uid}/${PROFILE}`;
     const updateUserPhoto = url.fullPath || photoURL;
     const storagePayload = {
+      userName: profileName,
+      email: email,
       userBio: profileBio,
       userPhoto: updateUserPhoto,
     };
@@ -46,7 +46,7 @@ const ProfileEdit = () => {
   return (
     <TopLayout>
       <h1>Profile</h1>
-      <ProfileCard profileImg={url.fullPath || profileImage}>
+      <ProfileCard profileImg={url.fullPath || photoURL}>
         <ProfileCard.Slot name="topContainer">
           <Input
             onChange={(event) => setProfileName(event.target.value)}
