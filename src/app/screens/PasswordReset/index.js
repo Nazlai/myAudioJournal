@@ -1,36 +1,48 @@
 import React, { useState } from "react";
 import { useFirebase } from "firebaseUtils";
-import { Layout, Input, SubmitButton } from "components";
+import { Layout, Input, SubmitButton, Overlay, Button, Form } from "components";
+import style from "./passwordReset.module";
 
-const PasswordReset = () => (
-  <Layout>
-    <h1>Password Reset</h1>
-    <PasswordResetForm />
-  </Layout>
-);
-
-const PasswordResetForm = () => {
-  const [email, setEmail] = useState("");
+const PasswordReset = () => {
   const firebase = useFirebase();
+  const [display, setDisplay] = useState(false);
+  const [email, setEmail] = useState("");
   const isInvalid = email === "";
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // TODO
-    // display check email for password reset modal on success
-    // route to sign in
-    firebase.doPasswordReset(email).then(console.log).catch(console.log);
+
+    firebase
+      .doPasswordReset(email)
+      .then(() => setDisplay(true))
+      .catch(console.log);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Input
-        onChange={(e) => setEmail(e.target.value)}
-        value={email}
-        placeholder="email"
-      />
-      <SubmitButton disabled={isInvalid} />
-    </form>
+    <Layout>
+      <h1>Password Reset</h1>
+      <Form handleSubmit={handleSubmit}>
+        <Input
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+          placeholder="email"
+        />
+        <SubmitButton disabled={isInvalid} />
+      </Form>
+      {display ? (
+        <Overlay>
+          <Layout>
+            <div className={style.modal}>
+              <p>
+                An email has been sent, please check your inbox for password
+                reset instructions
+              </p>
+              <Button text="Close" handleClick={() => setDisplay(false)} />
+            </div>
+          </Layout>
+        </Overlay>
+      ) : null}
+    </Layout>
   );
 };
 
