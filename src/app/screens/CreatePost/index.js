@@ -45,6 +45,7 @@ const CreatePost = () => {
       title: postTitle,
       journal: postJournal,
       audio: url.fullPath || "",
+      fileName: url.name,
       date: date,
     };
 
