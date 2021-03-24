@@ -4,6 +4,7 @@ import "firebase/auth";
 import "firebase/storage";
 import "firebase/database";
 import { normalizeUser } from "utils";
+import { VERIFY_EMAIL_REDIRECT_URL } from "constants/firebase";
 
 const config = {
   apiKey: process.env.API_KEY,
@@ -53,12 +54,13 @@ class Firebase {
 
   doUpdateUserProfile(payload) {
     const user = this.auth.currentUser;
-    console.log(user);
     return user.updateProfile(payload);
   }
 
   doSendVerificationEmail() {
-    return this.auth.currentUser.sendEmailVerification();
+    return this.auth.currentUser.sendEmailVerification({
+      url: VERIFY_EMAIL_REDIRECT_URL,
+    });
   }
 
   doCreateChildRef(fileName) {
@@ -69,6 +71,14 @@ class Firebase {
     const dbPostRef = this.databaseRef.child(path);
     const newPostRef = dbPostRef.push();
     return newPostRef.set(payload);
+  }
+
+  doDeletePost(path) {
+    return this.databaseRef.child(path).set(null);
+  }
+
+  doDeleteFile(path) {
+    return this.storageRef.child(path).delete();
   }
 
   setUserData(path, payload) {
@@ -85,7 +95,8 @@ class Firebase {
   }
 
   getUser() {
-    return normalizeUser(this.auth.currentUser);
+    const userData = this.auth.currentUser;
+    return userData ? normalizeUser(this.auth.currentUser) : {};
   }
 }
 
