@@ -8,17 +8,19 @@ const EmailVerification = () => {
   const firebase = useFirebase();
 
   const handleClick = () => {
-    firebase.doSendVerificationEmail().catch((error) => {
-      setDisable(true);
-      setError(error);
-    });
+    firebase
+      .doSendVerificationEmail()
+      .then(() => setDisable(true))
+      .catch((error) => {
+        setError(error);
+      });
   };
 
   return (
     <Layout>
       <h1>Verify Email</h1>
       <Button
-        text="Send Verification"
+        text={disable ? "Email sent" : "Send Verification"}
         handleClick={handleClick}
         disabled={disable}
       />
