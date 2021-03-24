@@ -36,10 +36,13 @@ const Feed = () => {
   const handleRemovePost = (post) => {
     const { postUid, fileName } = post;
     const newList = list.filter((i) => i.uid !== postUid);
+    const deleteFileTask = fileName
+      ? firebase.doDeleteFile
+      : (param) => Promise.resolve(param);
 
     Promise.all([
       firebase.doDeletePost(`${uid}/${AUDIO_POST}/${postUid}`),
-      firebase.doDeleteFile(`${email}/${fileName}`),
+      deleteFileTask(`${email}/${fileName}`),
     ]).then(() => {
       setList(newList);
       setDeletePost(null);
