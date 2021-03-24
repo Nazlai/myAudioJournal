@@ -16,10 +16,6 @@ import {
   ProfileEdit,
 } from "screens";
 import { AuthenticatedRoute, PrivateRoute } from "components";
-import { isUserUniqueAndVerified } from "utils";
-
-// TODO 3/10
-// reconsider landing, is it necessary?
 
 const Routes = () => {
   return (
@@ -30,13 +26,10 @@ const Routes = () => {
       <PrivateRoute path={ROUTES.HOME}>
         <Feed />
       </PrivateRoute>
-      <AuthenticatedRoute
-        path={ROUTES.SIGN_IN}
-        condition={isUserUniqueAndVerified}
-      >
+      <AuthenticatedRoute path={ROUTES.SIGN_IN} condition={(x) => x.uid}>
         <SignIn />
       </AuthenticatedRoute>
-      <AuthenticatedRoute path={ROUTES.SIGN_UP}>
+      <AuthenticatedRoute path={ROUTES.SIGN_UP} condition={(x) => x.uid}>
         <SignUp />
       </AuthenticatedRoute>
       <AuthenticatedRoute path={ROUTES.PASSWORD_RESET}>
