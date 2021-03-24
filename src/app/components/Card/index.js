@@ -31,6 +31,10 @@ export const Card = (props) => {
   return (
     <div className={style.container}>
       <div className={style.title}>{capitalize(title)}</div>
+      <span className={style.deleteIcon} onClick={props.handleDelete}>
+        <i className="fas fa-trash-alt"></i>
+      </span>
+
       <p>{date ? parseDate(date) : null}</p>
       <div className={style.content}>
         {displayLearnMore ? `${trunc(contentLength)(content)}...` : content}
@@ -44,4 +48,5 @@ Card.propTypes = {
   title: PropTypes.string,
   content: PropTypes.string,
   date: PropTypes.string,
+  handleDelete: PropTypes.func,
 };

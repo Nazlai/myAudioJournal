@@ -67,6 +67,10 @@ const SignInForm = () => {
     firebase
       .doSignInWithEmailAndPassword(email, password)
       .then((snapShot) => {
+        console.log(
+          isUserUniqueAndVerified(normalizeUser(snapShot.user)),
+          snapShot.user
+        );
         if (isUserUniqueAndVerified(normalizeUser(snapShot.user))) {
           history.push(ROUTES.HOME);
         } else {
@@ -80,7 +84,7 @@ const SignInForm = () => {
   const isInvalid = email === "" || password === "";
 
   return (
-    <Form handleSubmit={handleSubmit}>
+    <Form handleSubmit={handleSubmit} centerContent={true}>
       <Input
         type="text"
         value={email}

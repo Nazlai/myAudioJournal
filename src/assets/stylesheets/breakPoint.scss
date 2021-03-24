@@ -1,0 +1,10 @@
+$smallMobile: 320px;
+$largeMobile: 360px;
+$tablet: 700px;
+$desktop: 1000px;
+
+@mixin respond-to($breakPoint) {
+  @media only screen and (min-width: $breakPoint) {
+    @content;
+  }
+}

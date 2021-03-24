@@ -7,10 +7,11 @@
 .card {
   @include boxShadow;
   padding: 1rem;
-  margin: 1rem;
+  margin: 1rem auto;
   min-height: 20rem;
   display: flex;
   flex-direction: column;
+  max-width: 35rem;
 }
 
 .topContainer {
@@ -36,7 +37,6 @@
 
 .infoContainer {
   display: flex;
-  flex-basis: 60%;
   flex-direction: column;
   align-items: start;
   justify-content: center;

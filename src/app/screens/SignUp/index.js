@@ -72,7 +72,7 @@ const SignUpForm = () => {
     passwordOne !== passwordTwo;
 
   return (
-    <Form handleSubmit={handleSubmit}>
+    <Form handleSubmit={handleSubmit} centerContent={true}>
       <Input
         type="text"
         placeholder="email"

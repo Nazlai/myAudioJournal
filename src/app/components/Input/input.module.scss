@@ -1,14 +1,18 @@
 @import "~styles/colors";
-
-.container {
-  margin-bottom: 0.7rem;
-  max-width: 20rem;
-}
+@import "~styles/breakPoint";
 
 .input {
   padding: 0.5rem;
   border: 1px solid $darkPrimaryColor;
   width: 100%;
+  margin-bottom: 1rem;
+  max-width: 15rem;
+  @include respond-to($largeMobile) {
+    max-width: 17rem;
+  }
+  @include respond-to($tablet) {
+    max-width: 20rem;
+  }
 }
 
 .input:focus {
@@ -17,4 +21,11 @@
 
 .textArea {
   border: 1px solid $darkPrimaryColor;
+  width: 15rem;
+  @include respond-to($largeMobile) {
+    width: 17rem;
+  }
+  @include respond-to($tablet) {
+    width: 20rem;
+  }
 }

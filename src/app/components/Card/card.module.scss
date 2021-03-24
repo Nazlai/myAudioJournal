@@ -6,6 +6,7 @@
   color: $primaryColor;
   padding: 1rem;
   margin: 1.5rem 0;
+  position: relative;
 }
 
 .title,
@@ -15,4 +16,10 @@
 
 .content {
   text-align: left;
+}
+
+.deleteIcon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
 }
