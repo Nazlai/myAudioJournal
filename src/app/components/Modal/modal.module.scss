@@ -1,0 +1,25 @@
+@import "~styles/colors";
+
+.modalTitle {
+  text-align: left;
+  margin: 0;
+  padding: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+.modalText {
+  min-height: 5rem;
+}
+
+.modalText p {
+  text-align: left;
+  margin: 0;
+  padding: 1rem;
+}
+
+.modal {
+  background-color: white;
+  margin: 1rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
