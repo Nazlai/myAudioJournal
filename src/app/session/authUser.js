@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
-import { normalizeUser } from "utils";
-import { useFirebase } from "firebaseUtils";
+import React, { useContext } from "react";
+import useAuthenticate from "utils/useAuthenticate";
 
 export const AuthUserContext = React.createContext(null);
 
@@ -10,15 +9,7 @@ export const useAuth = () => {
 
 const withAuthentication = (Component) => {
   const WithAuthentication = (props) => {
-    const [authUser, setAuthUser] = useState(null);
-    const firebase = useFirebase();
-
-    useEffect(() => {
-      const listener = firebase.auth.onAuthStateChanged((authUser) =>
-        authUser ? setAuthUser(normalizeUser(authUser)) : setAuthUser(null)
-      );
-      return listener;
-    }, [firebase]);
+    const [authUser] = useAuthenticate();
 
     return (
       <AuthUserContext.Provider value={authUser}>

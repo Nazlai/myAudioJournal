@@ -10,15 +10,15 @@ const useAuthenticate = () => {
   useEffect(() => {
     const listener = firebase.auth.onAuthStateChanged((authUser) => {
       if (authUser) {
-        setAuthUser(assignRole(normalizeUser(authUser)));
-        setLoading(false);
+        const userData = assignRole(normalizeUser(authUser));
+        setAuthUser(userData);
       } else {
         setAuthUser({});
-        setLoading(false);
       }
+      setLoading(false);
     });
     return listener;
-  }, [firebase]);
+  }, []);
 
   return [authUser, loading];
 };
