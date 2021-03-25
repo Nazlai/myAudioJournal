@@ -8,22 +8,25 @@ import {
   Button,
   Form,
   Modal,
+  Warning,
 } from "components";
 import style from "./passwordReset.module";
 
 const PasswordReset = () => {
   const firebase = useFirebase();
-  const [display, setDisplay] = useState(true);
+  const [display, setDisplay] = useState(false);
   const [email, setEmail] = useState("");
+  const [error, setError] = useState(null);
   const isInvalid = email === "";
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setError(null);
 
     firebase
       .doPasswordReset(email)
       .then(() => setDisplay(true))
-      .catch(console.log);
+      .catch((error) => setError(error));
   };
 
   return (
@@ -35,6 +38,8 @@ const PasswordReset = () => {
           value={email}
           placeholder="email"
         />
+        {error ? <Warning text={error.message} /> : null}
+
         <SubmitButton disabled={isInvalid} />
       </Form>
       {display ? (
