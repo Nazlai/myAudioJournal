@@ -13,7 +13,7 @@ const Profile = () => {
   const firebase = useFirebase();
   const history = useHistory();
   const [bio, setBio] = useState("");
-  const { name, email = "", uid, photoURL } = firebase.getUser() || {};
+  const { name, email = "", uid, photoURL } = firebase.getUser();
 
   useEffect(() => {
     if (uid) {
@@ -46,7 +46,7 @@ const Profile = () => {
           <p className={style.info}>{email}</p>
         </ProfileCard.Slot>
         <ProfileCard.Slot name="midContainer">
-          <p>{bio}</p>
+          <p className={style.bio}>{bio}</p>
         </ProfileCard.Slot>
         <ProfileCard.Slot name="bottomContainer">
           <Button text="Edit" handleClick={handleClick} />
