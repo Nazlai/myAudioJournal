@@ -67,10 +67,6 @@ const SignInForm = () => {
     firebase
       .doSignInWithEmailAndPassword(email, password)
       .then((snapShot) => {
-        console.log(
-          isUserUniqueAndVerified(normalizeUser(snapShot.user)),
-          snapShot.user
-        );
         if (isUserUniqueAndVerified(normalizeUser(snapShot.user))) {
           history.push(ROUTES.HOME);
         } else {
