@@ -9,9 +9,9 @@
     "start": "node server.js",
     "lint": "eslint \"src/**/*.{js,jsx}\"",
     "format": "prettier \"src/**/*.{js,html}\" --write",
-    "build": "webpack",
+    "build": "webpack --mode production",
     "bundle:report": "source-map-explorer dist/*.js",
-    "heroku-postbuild": "webpack -p"
+    "heroku-postbuild": "npm run build"
   },
   "keywords": [],
   "author": "",
