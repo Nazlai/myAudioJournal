@@ -14,7 +14,7 @@ const trunc = (limit) => (string) =>
   string.split(" ").slice(0, limit).join(" ");
 
 export const Card = (props) => {
-  const { title, content, date } = props;
+  const { title, content, date, audio } = props;
   const history = useHistory();
   const contentLength = 25;
   const displayLearnMore = countWords(content) > contentLength;
@@ -22,7 +22,12 @@ export const Card = (props) => {
   const handleClick = () => {
     const location = {
       pathname: ROUTES.JOURNAL,
-      state: props,
+      state: {
+        title,
+        content,
+        date,
+        audio,
+      },
     };
 
     history.push(location);
@@ -49,4 +54,5 @@ Card.propTypes = {
   content: PropTypes.string,
   date: PropTypes.string,
   handleDelete: PropTypes.func,
+  audio: PropTypes.string,
 };
