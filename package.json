@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:dev": "webpack serve --mode development --config webpack.dev.js",
+    "start:dev": "webpack serve --mode development",
     "start": "node server.js",
     "lint": "eslint \"src/**/*.{js,jsx}\"",
     "format": "prettier \"src/**/*.{js,html}\" --write",
-    "build": "webpack --mode production --config webpack.prod.js",
+    "build": "webpack --mode production",
     "bundle:report": "source-map-explorer dist/*.js",
     "heroku-postbuild": "npm run build"
   },
@@ -50,7 +50,6 @@
     "url-loader": "^4.1.1",
     "webpack": "^4.46.0",
     "webpack-cli": "^4.5.0",
-    "webpack-dev-server": "^3.11.2",
-    "webpack-merge": "^5.7.3"
+    "webpack-dev-server": "^3.11.2"
   }
 }
