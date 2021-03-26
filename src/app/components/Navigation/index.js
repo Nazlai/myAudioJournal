@@ -52,7 +52,12 @@ const PublicNavigation = () => {
   return (
     <Fragment>
       <li>
-        <Link to={ROUTES.SIGN_IN}>MAJ</Link>
+        <Link to={ROUTES.LANDING}>MAJ</Link>
+      </li>
+      <li>
+        <Link to={ROUTES.SIGN_IN}>
+          <i className="fas fa-user"></i>
+        </Link>
       </li>
     </Fragment>
   );
