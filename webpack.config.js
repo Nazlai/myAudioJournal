@@ -3,6 +3,8 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 const path = require("path");
+const webpack = require("webpack");
+const dotenv = require("dotenv").config();
 const isDevelopment = process.env.NODE_ENV === "development";
 
 const webpackConfig = {
@@ -83,6 +85,9 @@ const webpackConfig = {
   },
   devtool: "source-map",
   plugins: [
+    new webpack.DefinePlugin({
+      "process.env": JSON.stringify(dotenv.parsed),
+    }),
     new FaviconsWebpackPlugin("./logo.png"),
     new HtmlWebpackPlugin({
       title: "My Audio Journal",
