@@ -90,7 +90,7 @@ const webpackConfig = {
     }),
     new FaviconsWebpackPlugin("./logo.png"),
     new HtmlWebpackPlugin({
-      title: "my audio journal",
+      title: "My Audio Journal",
       template: "./src/app/index.html",
     }),
     new MiniCssExtractPlugin({
