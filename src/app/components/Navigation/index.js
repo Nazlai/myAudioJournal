@@ -55,9 +55,7 @@ const PublicNavigation = () => {
         <Link to={ROUTES.LANDING}>MAJ</Link>
       </li>
       <li>
-        <Link to={ROUTES.SIGN_IN}>
-          <i className="fas fa-user"></i>
-        </Link>
+        <Link to={ROUTES.SIGN_IN}>SIGN IN</Link>
       </li>
     </Fragment>
   );
