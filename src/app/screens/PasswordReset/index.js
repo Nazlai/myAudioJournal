@@ -36,7 +36,7 @@ const PasswordReset = () => {
         <Input
           onChange={(e) => setEmail(e.target.value)}
           value={email}
-          placeholder="email"
+          placeholder="Email"
         />
         {error ? <Warning text={error.message} /> : null}
 

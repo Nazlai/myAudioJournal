@@ -75,19 +75,19 @@ const SignUpForm = () => {
     <Form handleSubmit={handleSubmit} centerContent={true}>
       <Input
         type="text"
-        placeholder="email"
+        placeholder="Email"
         value={email}
         onChange={handleChange(actionType.SET_EMAIL, dispatch)}
       />
       <Input
         type="password"
-        placeholder="password"
+        placeholder="Password"
         value={passwordOne}
         onChange={handleChange(actionType.SET_PASSWORD_ONE, dispatch)}
       />
       <Input
         type="password"
-        placeholder="confirm password"
+        placeholder="Confirm password"
         value={passwordTwo}
         onChange={handleChange(actionType.SET_PASSWORD_TWO, dispatch)}
       />

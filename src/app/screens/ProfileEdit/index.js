@@ -51,7 +51,7 @@ const ProfileEdit = () => {
           <Input
             onChange={(event) => setProfileName(event.target.value)}
             value={profileName}
-            placeholder="display name"
+            placeholder="Display name"
           />
           <label>
             Change Image
@@ -72,7 +72,6 @@ const ProfileEdit = () => {
           <TextArea
             onChange={(event) => setProfileBio(event.target.value)}
             value={profileBio}
-            placeholder="bio"
           />
         </ProfileCard.Slot>
         <ProfileCard.Slot name="bottomContainer">

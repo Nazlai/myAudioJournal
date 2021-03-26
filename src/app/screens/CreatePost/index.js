@@ -72,7 +72,7 @@ const CreatePost = () => {
         <FormItem label="Title:">
           <Input
             type="text"
-            placeholder="title"
+            placeholder="Title"
             value={postTitle}
             onChange={setter(setPostTitle)}
             direction="left"

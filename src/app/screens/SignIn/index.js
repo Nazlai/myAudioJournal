@@ -84,12 +84,12 @@ const SignInForm = () => {
       <Input
         type="text"
         value={email}
-        placeholder="email"
+        placeholder="Email"
         onChange={handleChange(actionType.SET_EMAIL, dispatch)}
       />
       <Input
         type="password"
-        placeholder="password"
+        placeholder="Password"
         value={password}
         onChange={handleChange(actionType.SET_PASSWORD, dispatch)}
       />
