@@ -1,5 +1,6 @@
 @import "~styles/colors";
 @import "~styles/boxShadow";
+@import "~styles/breakPoint";
 
 .form {
   @include boxShadow;
@@ -8,6 +9,14 @@
 
 .label {
   margin-top: 0;
+
+  @include respond-to($tablet) {
+    margin: 0;
+    margin-top: 0.5rem;
+    width: calc(49% - 3rem);
+    text-align: right;
+    margin-right: 1rem;
+  }
 }
 
 .container {
@@ -15,4 +24,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
+  @include respond-to($tablet) {
+    flex-direction: row;
+  }
 }
