@@ -1,12 +1,18 @@
 @import "~styles/colors";
 @import "~styles/boxShadow";
+@import "~styles/breakPoint";
 
 .container {
   @include boxShadow;
   color: $primaryColor;
   padding: 1rem;
-  margin: 1.5rem 0;
+  margin: 1.5rem auto;
+  max-width: 320px;
   position: relative;
+
+  @include respond-to($tablet) {
+    margin: auto;
+  }
 }
 
 .title,

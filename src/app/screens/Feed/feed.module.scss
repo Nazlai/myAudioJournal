@@ -1,7 +1,17 @@
 @import "~styles/colors";
+@import "~styles/breakPoint";
 
-.posts {
-  margin: 1rem;
+.list {
+  margin: 2rem 1rem;
+  @include respond-to($tablet) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1.5rem 1rem;
+  }
+
+  @include respond-to($desktop) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
 
 .modalBackground {
