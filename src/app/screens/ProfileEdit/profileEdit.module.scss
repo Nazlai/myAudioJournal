@@ -1,3 +1,10 @@
+@import "~styles/button";
+
 .upload {
   display: none;
+}
+
+.uploadBtn {
+  @include primaryButton;
+  margin: 0;
 }
