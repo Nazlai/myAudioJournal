@@ -5,7 +5,14 @@ import { useAuth } from "session/authUser";
 import useUpload from "utils/useUpload";
 import { PROFILE } from "constants/firebase";
 import * as ROUTES from "constants/routes";
-import { TopLayout, ProfileCard, Input, TextArea, Button } from "components";
+import {
+  TopLayout,
+  ProfileCard,
+  Input,
+  TextArea,
+  Button,
+  Warning,
+} from "components";
 import style from "./profileEdit.module";
 
 const ProfileEdit = () => {
@@ -16,14 +23,17 @@ const ProfileEdit = () => {
   const {
     location: { state },
   } = history;
+  const { uid } = authUser;
   const { name, bio, email, photoURL } = state;
   const [profileName, setProfileName] = useState(name);
   const [profileBio, setProfileBio] = useState(bio);
   const [file, setFile] = useState("");
-  const { _, url } = useUpload(firebase.doCreateChildRef(email), file);
+  const { _, url, error } = useUpload({
+    uploadTask: firebase.doCreateChildRef(`users/${uid}/profileImage`),
+    file,
+  });
 
   const handleClick = () => {
-    const { uid } = authUser;
     const path = `${uid}/${PROFILE}`;
     const updateUserPhoto = url.fullPath || photoURL;
     const storagePayload = {
@@ -53,7 +63,7 @@ const ProfileEdit = () => {
             value={profileName}
             placeholder="Display name"
           />
-          <label>
+          <label className={style.uploadBtn}>
             Change Image
             <input
               type="file"
@@ -69,6 +79,7 @@ const ProfileEdit = () => {
           </label>
         </ProfileCard.Slot>
         <ProfileCard.Slot name="midContainer">
+          {error ? <Warning text={error.message} /> : null}
           <TextArea
             onChange={(event) => setProfileBio(event.target.value)}
             value={profileBio}

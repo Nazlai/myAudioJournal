@@ -30,15 +30,16 @@ const CreatePost = () => {
   const fileRef = useRef(null);
   const [postTitle, setPostTitle] = useState("");
   const [postJournal, setPostJournal] = useState("");
-  const { email = "" } = auth;
+  const { uid } = auth;
   const [file, setFile] = useState("");
-  const storageRef = firebase.doCreateChildRef(email);
-  const { loadState, url, error } = useUpload(storageRef, file);
+  const storageRef = firebase.doCreateChildRef(`users/${uid}/audio`);
+  const { loadState, url, error } = useUpload({
+    uploadTask: storageRef,
+    file,
+  });
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    const { uid } = auth;
     const path = `${uid}/${AUDIO_POST}`;
     const date = new Date().toISOString();
     const payload = {
@@ -107,6 +108,11 @@ const CreatePost = () => {
               </div>
             </Overlay>
           ) : null}
+        </FormItem>
+        <FormItem>
+          <p className={style.uploadInfo}>
+            Please upload a file smaller than 1mb.
+          </p>
         </FormItem>
         <div className={style.bottomContainer}>
           <SubmitButton disabled={isInvalid} />
