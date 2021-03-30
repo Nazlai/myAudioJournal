@@ -1,29 +1,33 @@
 import { useState, useEffect } from "react";
 import * as LOAD_STATE from "constants/upload";
+import { parseStorageError as parseError } from "utils";
 
-const useUpload = (upload, file) => {
+const useUpload = ({ uploadTask, file }) => {
   const [loadState, setLoadState] = useState(LOAD_STATE.IDLE);
   const [url, setUrl] = useState({});
-  const [error, setError] = useState("");
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (file) {
-      const uploadTask = upload.child(file.name).put(file);
+      setError(null);
+      const task = uploadTask.child(file.name).put(file);
 
-      uploadTask.on(
+      task.on(
         "state_change",
         () => {
           setLoadState(LOAD_STATE.RUNNING);
         },
         (error) => {
-          setError(error);
+          console.log({ error });
+          const message = parseError(error);
+          setError({ message });
           setLoadState(LOAD_STATE.ERROR);
         },
         () => {
           setLoadState(LOAD_STATE.FINISHED);
-          const { name } = uploadTask.snapshot.ref;
+          const { name } = task.snapshot.ref;
 
-          uploadTask.snapshot.ref
+          task.snapshot.ref
             .getDownloadURL()
             .then((downloadUrl) => setUrl({ fullPath: downloadUrl, name }));
         }

@@ -64,3 +64,9 @@ export const isUserUniqueAndVerified = (user) => {
 
   return user.uid && user.emailVerified;
 };
+
+export const parseStorageError = (error) => {
+  return error.code === "storage/unauthorized"
+    ? `User is not authorized to perform the desired action`
+    : error.message;
+};
