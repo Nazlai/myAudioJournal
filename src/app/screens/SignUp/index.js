@@ -53,9 +53,10 @@ const SignUpForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const errorType = actionCreator(actionType.SET_ERROR);
+    const userEmail = email.trim();
 
     firebase
-      .doCreateUserWithEmailAndPassword(email, passwordOne)
+      .doCreateUserWithEmailAndPassword(userEmail, passwordOne)
       .then(() => {
         dispatch({ type: actionType.SIGNUP_SUCCESS });
         history.push(ROUTES.VERIFY_EMAIL);

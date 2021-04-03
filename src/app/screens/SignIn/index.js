@@ -63,9 +63,10 @@ const SignInForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const errorType = actionCreator(actionType.SET_ERROR);
+    const userEmail = email.trim();
 
     firebase
-      .doSignInWithEmailAndPassword(email, password)
+      .doSignInWithEmailAndPassword(userEmail, password)
       .then((snapShot) => {
         if (isUserUniqueAndVerified(normalizeUser(snapShot.user))) {
           history.push(ROUTES.HOME);

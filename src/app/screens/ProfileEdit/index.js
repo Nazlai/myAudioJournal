@@ -36,14 +36,15 @@ const ProfileEdit = () => {
   const handleClick = () => {
     const path = `${uid}/${PROFILE}`;
     const updateUserPhoto = url.fullPath || photoURL;
+    const userName = profileName.trim();
     const storagePayload = {
-      userName: profileName,
+      userName,
       email: email,
       userBio: profileBio,
       userPhoto: updateUserPhoto,
     };
     const profilePayload = {
-      displayName: profileName,
+      displayName: userName,
       photoURL: updateUserPhoto,
     };
 
