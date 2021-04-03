@@ -9,7 +9,6 @@ const Feed = () => {
   const firebase = useFirebase();
   const auth = useAuth();
   const uid = auth && auth.uid;
-  const { email } = auth;
   const [list, setList] = useState([]);
   const [deletePost, setDeletePost] = useState(null);
   const [displayModal, setDisplayModal] = useState(false);
@@ -37,12 +36,12 @@ const Feed = () => {
     const { postUid, fileName } = post;
     const newList = list.filter((i) => i.uid !== postUid);
     const deleteFileTask = fileName
-      ? firebase.doDeleteFile
+      ? firebase.doDeleteFile.bind(firebase)
       : (param) => Promise.resolve(param);
 
     Promise.all([
       firebase.doDeletePost(`${uid}/${AUDIO_POST}/${postUid}`),
-      deleteFileTask(`${email}/${fileName}`),
+      deleteFileTask(`users/${uid}/audio/${fileName}`),
     ]).then(() => {
       setList(newList);
       setDeletePost(null);
