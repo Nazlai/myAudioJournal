@@ -3,6 +3,7 @@ import style from "./feed.module";
 import { useFirebase } from "firebaseUtils";
 import { useAuth } from "session/authUser";
 import { Card, Layout, TopLayout, Modal, Overlay, Button } from "components";
+import { getAudioPath } from "utils";
 import { AUDIO_POST } from "constants/firebase";
 
 const Feed = () => {
@@ -38,10 +39,11 @@ const Feed = () => {
     const deleteFileTask = fileName
       ? firebase.doDeleteFile.bind(firebase)
       : (param) => Promise.resolve(param);
+    const path = getAudioPath(uid);
 
     Promise.all([
       firebase.doDeletePost(`${uid}/${AUDIO_POST}/${postUid}`),
-      deleteFileTask(`users/${uid}/audio/${fileName}`),
+      deleteFileTask(`${path}/${fileName}`),
     ]).then(() => {
       setList(newList);
       setDeletePost(null);

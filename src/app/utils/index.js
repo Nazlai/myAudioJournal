@@ -70,3 +70,12 @@ export const parseStorageError = (error) => {
     ? `User is not authorized to perform the desired action`
     : error.message;
 };
+
+export const getFilePath = (type) => (uid) => `users/${uid}/${type}`;
+
+export const getAudioPath = getFilePath("audio");
+
+export const createFileName = (name) => {
+  const date = new Date().getTime();
+  return `${name}_${date}`;
+};

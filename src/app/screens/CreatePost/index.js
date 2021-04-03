@@ -6,7 +6,6 @@ import { AUDIO_POST } from "constants/firebase";
 import * as ROUTES from "constants/routes";
 import * as LOAD_STATE from "constants/upload";
 import useUpload from "utils/useUpload";
-
 import {
   Layout,
   TopLayout,
@@ -19,9 +18,8 @@ import {
   Overlay,
   Warning,
 } from "components";
+import { getAudioPath } from "utils";
 import style from "./createPost.module";
-
-// 3/10 move post form into separate component
 
 const CreatePost = () => {
   const firebase = useFirebase();
@@ -32,7 +30,7 @@ const CreatePost = () => {
   const [postJournal, setPostJournal] = useState("");
   const { uid } = auth;
   const [file, setFile] = useState("");
-  const storageRef = firebase.doCreateChildRef(`users/${uid}/audio`);
+  const storageRef = firebase.doCreateChildRef(getAudioPath(uid));
   const { loadState, url, error } = useUpload({
     uploadTask: storageRef,
     file,
@@ -97,7 +95,7 @@ const CreatePost = () => {
               }}
             />
           </label>
-          {url.name ? <p>{url.name}</p> : null}
+          {url.displayName ? <p>{url.displayName}</p> : null}
           {error ? <Warning text={error.message} /> : null}
           {loadState === LOAD_STATE.RUNNING ? (
             <Overlay>
