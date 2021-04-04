@@ -11,7 +11,7 @@ const parseDuration = (seconds) => {
   return `${min}:${pad(sec)}`;
 };
 
-const Icon = (iconClassName) => <i className={iconClassName} />;
+const Icon = ({ iconClassName }) => <i className={iconClassName} />;
 const Play = () => <Icon iconClassName="far fa-play-circle" />;
 const Pause = () => <Icon iconClassName="far fa-pause-circle" />;
 const Backward = () => <Icon iconClassName="fas fa-backward" />;
@@ -63,4 +63,8 @@ export const AudioPlayer = ({ url }) => {
 
 AudioPlayer.propTypes = {
   url: PropTypes.string,
+};
+
+Icon.propTypes = {
+  iconClassName: PropTypes.string,
 };
